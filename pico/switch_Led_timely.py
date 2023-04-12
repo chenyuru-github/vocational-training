@@ -21,7 +21,7 @@ for i in ledPin :
     i.off() # init led
     
 while True :
-    if clockwise == 0 :
+    if clockwise:
         for i in ledPin :
             i.toggle()
             sleep(0.5)
