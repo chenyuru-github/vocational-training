@@ -1,3 +1,4 @@
+import machine
 from machine import Pin, PWM
 from time import sleep
 
@@ -8,7 +9,7 @@ def servo(degrees):
     if degrees > 180:degrees=180
     if degrees < 0:degrees=0
     maxDuty=7000
-    minDuty=2000
+    minDuty=1000
     
     newDuty=minDuty+(maxDuty-minDuty)*(degrees/180)
     servoPin.duty_u16(int(newDuty))
