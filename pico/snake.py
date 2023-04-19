@@ -17,12 +17,10 @@ oled_height = 64
 oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)
 
 # 定義貪食蛇和食物的位置
-global food_x, food_y, snake_x, snake_y, snake_size
-
 snake_x = [32, 32, 32]
-snake_y = [32, 34, 36]
-food_x = random.randint(10, oled_width-10)
-food_y = random.randint(10, oled_height-10)
+snake_y = [36, 34, 32]
+food_x = random.randint(10, oled_width - 10)
+food_y = random.randint(10, oled_height - 10)
 if food_x % 2 != 0 : food_x = food_x + 1
 if food_y % 2 != 0 : food_y = food_y + 1
 snake_size = 3
@@ -40,7 +38,7 @@ def draw_pixel(x, y, color):
 
 # 定義檢查貪食蛇是否吃到食物的函數
 def check_food():
-    global food_x,food_y,snake_x,snake_y,snake_size
+    global food_x, food_y, snake_x, snake_y, snake_size
     if snake_x[0] == food_x and snake_y[0] == food_y:
         food_x = random.randint(10, oled_width-10)
         food_y = random.randint(10, oled_height-10)
@@ -52,7 +50,7 @@ def check_food():
 
 # 定義更新貪食蛇位置的函數
 def update_snake():
-    global snake_x,snake_y,snake_size,direction
+    global snake_x, snake_y, snake_size, direction
     print(direction)
     
     for i in range(snake_size-1, 0, -1):
@@ -70,7 +68,7 @@ def update_snake():
 
 # 定義檢查貪食蛇是否碰到邊緣的函數
 def check_border():
-    global snake_x,snake_y
+    global snake_x, snake_y
     if snake_x[0] < 0:
         snake_x[0] = oled_width-2
     elif snake_x[0] > oled_width-2:
@@ -82,7 +80,7 @@ def check_border():
 
 #定義檢查貪食蛇是否碰到自己的函數
 def check_self():
-    global snake_x,snake_y,snake_size
+    global snake_x, snake_y, snake_size
     for i in range(1, snake_size):
         if snake_x[0] == snake_x[i] and snake_y[0] == snake_y[i]:
             print(snake_y)
@@ -91,11 +89,11 @@ def check_self():
 
 #定義繪製遊戲界面的函數
 def draw_game():
+    global snake_x, snake_y, snake_size, WHITE
     # 清空屏幕
     oled.fill(BLACK)
     # 繪製貪食蛇
     for i in range(snake_size):
-#         print ('snake_size',snake_size)
         draw_pixel(snake_x[i], snake_y[i], WHITE)
 
     # 繪製食物
@@ -113,26 +111,18 @@ while True:
     # 檢查搖桿的方向
     if read_y > 55000:
         direction = 0
-#         print ('p')
-#         print('{}{:5}{}{:5}'.format('X =',read_x,' Y =',read_y))
     elif read_y < 15000:
         direction = 1
-#         print ('d')
-#         print('{}{:5}{}{:5}'.format('X =',read_x,' Y =',read_y))
     elif read_x < 15000:
         direction = 3
-#         print ('l')
-#         print('{}{:5}{}{:5}'.format('X =',read_x,' Y =',read_y))
     elif read_x > 55000:
         direction = 2
-#         print ('r')
-#         print('{}{:5}{}{:5}'.format('X =',read_x,' Y =',read_y))
-
-    # 更新貪食蛇位置
-    update_snake()
 
     # 檢查貪食蛇是否吃到食物
     check_food()
+    
+    # 更新貪食蛇位置
+    update_snake()
 
     # 檢查貪食蛇是否碰到邊緣或自己
     if check_self():
