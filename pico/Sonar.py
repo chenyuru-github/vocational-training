@@ -16,7 +16,7 @@ def ping():
     timeout = False
     start = time.ticks_us()
     
-    while echo.value() == 0: #wait for HIGH
+    while not echo.value(): #wait for HIGH
         start=time.ticks_us()
     while echo.value() : #wait for HIGH
         stop=time.ticks_us()
@@ -35,14 +35,14 @@ step_time = 1
 while True:
     distance = round(ping())
     print("%s cm" % distance)
-    if distance > 30 :
+    if distance > 50 :
         buzzer.duty_u16(0)
-        time.sleep(0.5)
-    if (distance <= 35) and (distance > 25) :
+        time.sleep(0.8)
+    if (distance <= 55) and (distance > 40) :
         bi(0.6)       
-    if (distance <= 25) and (distance > 15) :
+    if (distance <= 40) and (distance > 25) :
         bi(0.4)
-    if (distance <= 15) and (distance > 8) :
+    if (distance <= 25) and (distance > 8) :
         bi(0.2)
     if (distance <= 8)  :
         buzzer.duty_u16(68)
