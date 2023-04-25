@@ -35,7 +35,7 @@ def playnote(Note, Duration):
         sleep(0.05)
         ledPin[0].toggle()
         ledPin[1].toggle()
-        buzzer.duty_u16(100)        
+        buzzer.duty_u16(50)        
         buzzer.freq(MusicNotes[Note])
         print (MusicNotes[Note])
         sleep(Duration)
@@ -43,7 +43,7 @@ def playnote(Note, Duration):
 ledPin[0].on()
 ledPin[1].off()
 
-for n in tigers:
+for n in start:
     playnote(n, 0.2)
     
 buzzer.duty_u16(0)
