@@ -13,7 +13,7 @@ import random
 
 localIP     = "127.0.0.1"
 
-localPort   = 7000
+localPort   = 3500
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
