@@ -14,14 +14,16 @@ def on_connect(client, userdata, flags, rc):
     # 將訂閱主題寫在on_connet中
     # 如果我們失去連線或重新連線時 
     # 地端程式將會重新訂閱
-    client.subscribe("sensor/temp2")
-    client.subscribe("sensor/pic3")
+    # client.subscribe("sensor/temp2")
+    # client.subscribe("sensor/pic3")
+    client.subscribe("sensor/tara")
+    client.subscribe("sensor/pic_55688")
 
 # 當接收到從伺服器發送的訊息時要進行的動作
 def on_message(client, userdata, msg):
 
-    if msg.topic=='sensor/pic3':
-        print('got image from sensor/pic3')
+    if msg.topic=='pic_55688':
+        print('got image from pic_55688')
         import base64
         import datetime
         filename=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")+'.png'

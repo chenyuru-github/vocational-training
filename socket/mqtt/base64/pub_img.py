@@ -20,7 +20,6 @@ ISOTIMEFORMAT = '%y%m/%d %H:%M:%S'
 # 初始化地端程式
 client = mqtt.Client()
 
-
 # 設定連線資訊(IP, Port, 連線時間)
 client.connect("hq.ittraining.com.tw", 1883, 60)
 
@@ -36,7 +35,7 @@ def encode_base64(file):
 
 img=encode_base64('lin.jpg')
 print(img)
-client.publish("sensor/pic3", img)
+client.publish("pic_55688", img)
 
 
 # while True:
