@@ -20,9 +20,9 @@ def install_handler():
 install_handler()
 #--------------------------------------------
 
-TARGET_HOST = '127.0.0.1'
+TARGET_HOST = '192.168.99.195'
 #HOST = '125.229.69.35'
-TARGET_PORT = 65535
+TARGET_PORT = 7000
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((TARGET_HOST, TARGET_PORT))
