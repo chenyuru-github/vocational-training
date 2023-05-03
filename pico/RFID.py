@@ -1,6 +1,8 @@
 from mfrc522 import MFRC522
-from machine import Pin
+from machine import Pin, PWM
 import utime
+
+buzzer = PWM(Pin(28))
 
 green_led = Pin(14, Pin.OUT) 
 red_led  = Pin(15, Pin.OUT)
@@ -20,12 +22,15 @@ try:
         if stat == reader.OK:      # 找到卡片
             (stat, uid) = reader.SelectTagSN()
             if stat == reader.OK:
+                buzzer.duty_u16(768)
+                utime.sleep(0.2)
+                buzzer.duty_u16(0)
                 card_num = uidToString(uid)
                 print(".....卡片號碼： %s" % card_num)
-                if  card_num == '177CF683':   #'7A811D60':
+                if  card_num == '1DBE5EB1':   #'卡片號碼':
                     green_led.value(1)   # 讀到授權的卡號後點亮綠色 LED
                     utime.sleep(2)       # 亮 2 秒鐘
-                    green_led.value(0) 
+                    green_led.value(0)
                 else:
                     print(".....卡片錯誤.....")
                     red_led.value(1)    # 讀到非授權的卡號後點亮紅色 LED

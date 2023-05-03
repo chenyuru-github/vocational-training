@@ -15,14 +15,14 @@ violet = (200, 0, 100)
 colors_rgb = [red, orange, yellow, green, blue, indigo, violet]
 
 delay = 0.3
-strip.brightness(10)
+strip.brightness(0.1)
 
 while True:
     strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
-    strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
-    strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
-    strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
+#     strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
+#     strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
+#     strip.set_pixel(random.randint(0, numpix-1), colors_rgb[random.randint(0, len(colors_rgb)-1)])
     
-strip.show()
-utime.sleep(delay)
-strip.fill((0,0,0))
+    strip.show()
+    utime.sleep(delay)
+    strip.fill((0,0,0))
